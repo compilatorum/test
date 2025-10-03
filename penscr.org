@@ -1,0 +1,354 @@
+#+TITLE: Projeto SLM - Revisão Sistemática e Explicações ELI5
+#+AUTHOR: Manus
+#+DATE: <2025-08-17 Sat>
+#+OPTIONS: toc:nil num:nil
+#+PROPERTY: header-args:python :results output :exports both
+
+* Revisão Sistemática sobre Small Language Models (SLMs)
+** DONE Resumo Executivo
+Small Language Models (SLMs) — tipicamente entre 100M e 13B de parâmetros — têm avançado ao combinar três frentes: arquiteturas e inferência eficientes, compressão/transferência de conhecimento de LLMs, e integração com fontes externas (RAG e ferramentas). Em tarefas focadas, SLMs bem ajustados igualam ou superam LLMs maiores, com melhor latência, custo e privacidade. Os melhores resultados surgem de pipelines que unem dados curados, distilação forte, quantização de baixa precisão e RAG, priorizando métricas de utilidade e robustez ao lado de velocidade e energia.
+*** Resposta:
+
+** DONE Metodologia Sistemática
+*** DONE Objetivo: Mapear evidências sobre como projetar, treinar e implantar SLMs com alto desempenho prático em tarefas gerais e específicas.
+**** Resposta:
+
+*** DONE Perguntas de pesquisa:
+Quais estratégias tornam SLMs competitivos em qualidade vs. LLMs maiores?
+Quais são os trade‑offs de custo, latência, energia e privacidade?
+Quais lacunas existem em avaliação, segurança e uso em dispositivos?
+**** Resposta:
+
+*** DONE Critérios de inclusão:
+Estudos 2022–2025; peer‑review e preprints; escopo: SLMs, compressão (distilação, quantização, poda), arquiteturas eficientes (Transformers eficientes, SSMs), RAG, avaliação, on‑device.
+**** Resposta:
+
+*** DONE Critérios de exclusão:
+Trabalhos sem resultados empíricos, ou apenas teóricos sem implicações práticas; estudos exclusivamente sobre LLMs >70B sem componente de transferência para SLMs.
+**** Resposta:
+
+*** DONE Strings de Busca (Google Scholar)
+**** Código:
+#+begin_src python
+print('''
+"small language models" OR "SLM" AND "distillation" | "quantization" | "pruning" | "RAG" | "edge" | "on-device" | "SSM" | "Mixture-of-Experts"
+"efficient transformer" AND "inference" AND "KV cache" | "speculative decoding" | "flash attention"
+"instruction tuning" OR "preference distillation" OR "DPO" AND "small model"
+''')
+#+end_src
+
+#+RESULTS:
+
+**** Resposta:
+
+*** DONE Triagem e extração:
+Triagem título/abstract: relevância para SLMs e resultados quantitativos.
+Extração: dataset/tarefa, tamanho do modelo, técnica, métricas (ex.: exatidão, latência p50/p95, energia), ambiente (GPU/CPU/NPU; memória; quantização), riscos/safety.
+**** Resposta:
+
+*** DONE Avaliação de qualidade:
+Reprodutibilidade: código/modelos disponíveis; detalhes de hardware.
+Validade externa: variedade de tarefas/domínios/idiomas; ablação de componentes.
+Medições completas: qualidade + custo + latência + energia.
+**** Resposta:
+
+** DONE Síntese dos Achados (Estado-da-Arte)
+*** DONE Taxonomia de Estratégias
+**** DONE Arquiteturas e atenção eficientes:
+Transformers eficientes: otimizações de atenção (Flash/Memory‑efficient), KV‑cache com compressão e técnicas como attention sinks; decodificação especulativa para reduzir tokens por passo.
+Modelos de estado (SSMs): variantes tipo Mamba melhoram throughput e uso de memória em contextos longos, com qualidade competitiva em tarefas sequenciais.
+***** Resposta:
+
+**** DONE Compressão e transferência de conhecimento:
+Distilação (supervisionada/preferências): transfere capacidades de LLMs, preservando instrução e alinhamento. Combinar dados sintéticos e humanos melhora robustez.
+Quantização (8/4/3‑bit) e poda estruturada: reduzem memória/latência com degradação mínima quando calibradas e com QLoRA/awq‑style quantization‑aware finetuning.
+Low‑rank e adapters (LoRA/QLoRA): habilitam ajuste eficiente por domínio em GPUs acessíveis e até em edge com NPUs.
+***** Resposta:
+
+**** DONE Integração com conhecimento externo:
+RAG e ferramentas: SLM + busca/BDs/planilhas/código compensa lacunas paramétricas; desempenho melhora substancialmente em QA, geração factual e tarefas empresariais.
+Orquestração: pipelines com re‑ranking, verificação de citações e crítica automática (self‑check) reduzem alucinações.
+***** Resposta:
+
+**** DONE Dados e alinhamento:
+Curadoria de dados de alta qualidade: deduplicação, filtragem de ruído e balanceamento por idioma/tarefa rendem ganhos equivalentes a aumentos significativos de parâmetros.
+Técnicas de alinhamento leve: DPO, KTO e preference distillation adaptam SLMs para estilo/segurança sem custo elevado.
+***** Resposta:
+
+**** DONE Implantação e sistemas:
+On‑device e edge: SLMs de 1–3B quantizados a 4‑bit rodam com latência interativa em dispositivos modernos; 7B requerem otimizações agressivas e memória ≥12–16 GB no lado servidor.
+Privacidade/segurança: processamento local reduz exposição de dados; porém exige mitigação de ataques por extração de parâmetros e membership inference.
+***** Resposta:
+
+** DONE Observações de Desempenho e Trade-offs Práticos
+*** DONE Tarefas focadas vs. gerais: SLMs especializados superam LLMs genéricos em domínios estreitos (por exemplo, suporte interno, rotinas de negócio, consultas estruturadas) quando há RAG + ajuste fino de alta qualidade.
+**** Resposta:
+
+*** DONE Leis de escala com “ajudas”: Para SLMs, ganhos de dados e engenharia de prompts/pipelines (verificação, votação, auto‑reflexão barata) substituem parcialmente escala de parâmetros.
+**** Resposta:
+
+*** DONE Custo e energia: Menores custos por chamada e menor consumo permitem volume alto e SLOs rígidos; ainda assim, quantização extrema pode degradar raciocínio aritmético/cadeia‑de‑pensamento, exigindo calibragem e, às vezes, decodificação especulativa com modelos guias.
+**** Resposta:
+
+** DONE Tabela de Estratégias e Trade-offs
+*** Tabela:
+| Estratégia | O que é | Benefício principal | Trade-off típico | Quando usar |
+|------------|---------|---------------------|------------------|-------------|
+| Distilação de LLM | Transferir conhecimento de um LLM para um SLM | Qualidade próxima ao teacher | Pode herdar vieses/erros do teacher | Ao criar SLM geral de alta qualidade |
+| Quantização 8/4-bit | Reduzir precisão de pesos/ativações | Menor memória e latência | Perda de precisão em tarefas sensíveis | Em produção com restrições de custo |
+| RAG | Recuperar conhecimento externo no momento da consulta | Melhora factualidade e atualização | Dependência de indexação/latência de busca | Em domínios com bases atualizadas |
+| Adapters (LoRA/QLoRA) | Camadas de baixo custo para ajuste fino | Customização rápida e barata | Pode limitar capacidade em tarefas novas | Para múltiplos domínios/clientes |
+| Atenção/decodificação eficiente | KV-cache, Flash-Attention, especulativa | Aceleração sem rebaixar qualidade | Complexidade de engenharia | Em workloads de alta QPS |
+
+*** Resposta:
+
+** DONE Aplicações e Recomendações Práticas
+*** DONE Quando escolher SLMs
+Restrições de latência/custo:
+Cenário: chat interno, automação, triagem, classificação.
+Recomendação: SLM 1–3B com quantização 4‑bit e RAG; alvo de p95 < 300 ms em servidores modestos.
+Privacidade/on‑device (Android 13/edge):
+Cenário: dados sensíveis, uso offline, responsividade local.
+Recomendação: SLM ≤3B com quantização 4‑bit; usar aceleração via NPU/GPU quando disponível; limitar contexto para estabilidade.
+Domínio estreito e dados proprietários:
+Cenário: perguntas frequentes, formulários, relatórios.
+Recomendação: ajuste fino com LoRA + RAG; validação com checagem de fontes e guardrails.
+**** Resposta:
+
+*** DONE Boas práticas de pipeline
+Dados: curadoria forte, deduplicação, balanceamento por idioma (incluindo PT‑BR), geração sintética com verificação humana amostral.
+Treino/ajuste: distilação do teacher escolhido para a tarefa; ablações para escolher bit‑width; LoRA por domínio.
+Inferência: KV‑cache, batching dinâmico, top‑k/top‑p calibrados por tarefa; especulativa quando possível.
+Avaliação: qualidade (exatidão/factualidade), latência p50/p95, custo por 1k tokens, energia, robustez (mudança de distribuição), segurança (bloqueios e filtros).
+**** Resposta:
+
+*** DONE Lacunas e agenda de pesquisa
+Generalização sob restrição: entender limites de raciocínio multietapas e sistematicidade em SLMs quantizados.
+Segurança e alinhamento leve: métodos de preferência eficientes que mantenham segurança sem perder utilidade em baixa precisão.
+Multilinguismo real: cobertura robusta para PT‑BR e domínios técnicos, com métricas que reflitam uso em produção.
+RAG confiável: redução de alucinações com checagens e atribuições verificáveis sem sacrificar latência.
+Medições padronizadas: benchmarks que combinem qualidade, custo, latência e energia de forma comparável entre papers.
+**** Resposta:
+
+** DONE Como replicar no Google Scholar (passo a passo)
+Definir escopo e período:
+2022–2025; SLMs, compressão, RAG, on‑device.
+Executar buscas principais:
+Use as strings de busca listadas acima; aplique “Buscar em qualquer lugar do artigo”.
+Filtrar e organizar:
+Planilha: título, ano, técnica, tamanho do modelo, dados, métricas, ambiente, achados‑chave, limitações.
+Triagem sistemática:
+Etapa 1: título/abstract por relevância; Etapa 2: leitura completa; registre motivos de exclusão.
+Extração e síntese:
+Preencha a planilha; crie tabelas de comparação (técnica vs. ganhos vs. custos); identifique padrões e lacunas.
+Validação:
+Reaplique as buscas com “Ordenar por data”; adicione alertas; peça revisão por pares internos.
+
+💡 Dica: no Scholar, ative “Alertas” para cada string e use os filtros “Desde 2022”, “Ordenar por data” para capturar o estado‑da‑arte de forma contínua.
+*** Resposta:
+
+** DONE Mini-guia de Escolha por Tamanho do Modelo
+*** Tabela:
+| Faixa de parâmetros | Implantação típica | Latência esperada | Casos ideais | Observações |
+|--------------------|--------------------|-------------------|--------------|-------------|
+| 0.3–1B | On-device/edge | Muito baixa | Classificação, extração, regras | Excelente custo; limitado em raciocínio |
+| 1–3B | Edge/servidor leve | Baixa | Chat assistivo com RAG, suporte | Bom equilíbrio após distilação |
+| 7–13B | Servidor | Média | Geração rica, code assist, análise | Exige memória; melhor qualidade geral |
+
+*** Resposta:
+
+* Explicação ELI5 com Emojis
+** DONE O que são SLMs? 🤖
+Imagine que os SLMs são mini cérebros de IA 🧠 que conseguem entender e responder perguntas, escrever textos, traduzir, e muito mais — mas são pequenos, rápidos e econômicos!
+🐘 LLMs (Large Language Models) são grandões, tipo um elefante: super inteligentes, mas lentos e caros.
+🐭 SLMs são tipo ratinhos espertos: menores, mas ágeis e eficientes!
+👉 Eles têm entre 100 milhões e 13 bilhões de neurônios (parâmetros). Isso é muito, mas ainda bem menos que os gigantes como GPT-4.
+*** Resposta:
+
+** DONE Como os SLMs aprendem? 🧩
+*** DONE Distilação (ensinando com um professor)
+Um modelo grande ensina um pequeno, tipo um professor 👨‍🏫 explicando para um aluno.
+Exemplo: GPT-4 ensina um modelo menor a responder bem.
+🧠 Dica: use dados bons e variados para o aluno aprender direitinho!
+**** Resposta:
+
+*** DONE Quantização (ficar mais leve)
+É como comprimir o modelo, trocando números grandes por pequenininhos.
+Exemplo: usar números de 8 ou 4 bits em vez de 32.
+⚠️ Cuidado: se comprimir demais, ele pode esquecer como fazer contas ou pensar direito.
+**** Resposta:
+
+*** DONE RAG (buscar ajuda fora)
+O modelo consulta uma biblioteca externa 📖 quando não sabe algo.
+Exemplo: ele procura no Google ou em um banco de dados antes de responder.
+💡 Dica: combine com filtros para evitar respostas erradas (alucinações).
+**** Resposta:
+
+** DONE Jargões Explicados com Emojis 🛠️
+*** Tabela:
+| Jargão | Significado simples | Emoji explicação |
+|--------|---------------------|------------------|
+| Distilação | Ensinar um modelo pequeno com ajuda de um grande | 👨‍🏫➡️👶 |
+| Quantização | Deixar o modelo mais leve trocando números grandes por pequenos | 🧮🔧 |
+| RAG | Buscar informação externa antes de responder | 🔍📚 |
+| LoRA/QLoRA | Adicionar “camadas extras” para ensinar o modelo sem mudar tudo | 🧅🎓 |
+| KV Cache | Guardar memória para não repetir trabalho | 🧠💾 |
+| Speculative Decoding | Chutar respostas rápidas e corrigir depois | 🏃‍♂️🤔✅ |
+| Flash Attention | Atenção turbo para ler mais rápido | ⚡👀 |
+| SSM (State Space Models) | Modelos que lembram melhor sequências | 🧵🧠 |
+
+*** Resposta:
+
+** DONE Exemplos Práticos 🧪
+*** DONE Android 13 com IA local
+Quer rodar IA no celular sem internet? Use um SLM de até 3B com quantização 4-bit.
+Exemplo: um app de tradução ou assistente pessoal que funciona offline 📴.
+**** Resposta:
+
+*** DONE Empresa com dados internos
+Use SLM com RAG para responder perguntas sobre documentos da empresa.
+Exemplo: “Qual é o prazo do contrato X?” → IA busca no PDF e responde.
+**** Resposta:
+
+*** DONE Estudante ou pesquisador
+Use distilação para criar um modelo pequeno que entende bem sua área (ex: biologia 🧬).
+Dica: treine com textos da área e revise as respostas com especialistas.
+**** Resposta:
+
+** DONE Boas Práticas com Dicas Simples 💡
+*** DONE Treinamento
+Use dados limpos e variados 🧼📊.
+Misture textos reais com exemplos sintéticos (gerados por IA) 🤖✍️.
+**** Resposta:
+
+*** DONE Ajuste fino (fine-tuning)
+Use LoRA para ensinar o modelo sem gastar muito 💸.
+Faça testes com diferentes tamanhos e bits para achar o equilíbrio ⚖️.
+**** Resposta:
+
+*** DONE Inferência (usar o modelo)
+Ative KV Cache para acelerar 🧠💨.
+Use speculative decoding para respostas mais rápidas 🏎️.
+**** Resposta:
+
+*** DONE Segurança
+Filtre respostas perigosas ou erradas com regras simples 🚫🧠.
+Evite que o modelo memorize dados sensíveis 🕵️‍♂️.
+**** Resposta:
+
+** DONE Quando usar SLMs? 🧭
+*** Tabela:
+| Situação | Use SLM? | Por quê |
+|----------|----------|---------|
+| 💬 Chat interno | ✅ | Respostas rápidas e baratas |
+| 📱 App offline | ✅ | Funciona sem internet |
+| 🧠 Tarefa complexa | ⚠️ | Pode precisar de modelo maior |
+| 🧾 Dados privados | ✅ | Mais seguro se rodar localmente |
+
+*** Resposta:
+
+** DONE Resumo com Analogia 🧠
+Aprendem com professores grandes 👨‍🏫
+Ficam leves com dieta de bits 🧮
+Buscam ajuda quando precisam 🔍
+Trabalham rápido e barato 💨💸
+Eles não sabem tudo, mas com bons dados e truques, podem fazer muito!
+*** Resposta:
+
+* Como montar seu próprio SLM no Android 13 🧠
+** DONE Escolha o modelo certo 🧱
+Use um modelo pequeno, tipo Phi-2, Gemma 2B, ou Mistral 7B.
+Para Android, o ideal é até 3B com quantização 4-bit.
+*** Código:
+#+begin_src plaintext
+Modelo: Gemma 2B  
+Quantização: 4-bit  
+Tamanho final: ~1.2GB
+#+end_src
+
+#+RESULTS:
+
+*** Resposta:
+
+** DONE Use quantização para caber no celular 🧮
+Ferramentas como GGUF ou GPTQ ajudam a comprimir o modelo.
+Isso reduz o uso de memória e acelera a resposta.
+💡 Dica:
+Use quantização int4 para rodar em celulares com 6GB de RAM ou mais.
+*** Resposta:
+** DONE Adicione LoRA para ensinar coisas novas 🧠
+LoRA é como colocar uma “mochila de conhecimento” no modelo 🎒.
+Você pode treinar com frases em português, gírias mineiras 😄, ou comandos específicos.
+*** Código:
+#+begin_src plaintext
+Treinamento: "Como está o tempo em BH?" → Resposta: "Hoje tá quente, uai! ☀️"
+#+end_src
+
+#+RESULTS:
+
+*** Resposta:
+** DONE Use RAG para buscar dados locais 🔍
+Combine com um banco de dados ou arquivos PDF no celular.
+O modelo consulta os dados antes de responder.
+📁 Exemplo:
+Você pergunta: “Qual é o vencimento da fatura da Claro?”
+→ Ele busca no PDF salvo e responde: “Dia 10 de cada mês.”
+*** Resposta:
+
+** DONE Acelere com KV Cache e Speculative Decoding
+KV Cache guarda o que já foi dito, evitando repetir trabalho.
+Speculative Decoding faz o modelo “chutar” a resposta e corrigir depois.
+💡 Dica:
+Essas técnicas deixam o modelo até 2x mais rápido!
+*** Resposta:
+
+** DONE Ferramentas úteis para você testar 🧪
+*** Tabela:
+| Ferramenta | Função | Emoji explicação |
+|------------|--------|------------------|
+| LM Studio | Interface para rodar modelos localmente | 🖥️🧠 |
+| Ollama | Gerenciador de modelos com comandos simples | ⚙️📦 |
+| GGUF | Formato leve para modelos quantizados | 🧮📁 |
+| LoRA Trainer | Treinar modelos com dados personalizados | 🎓🧵 |
+
+*** Resposta:
+
+** DONE Exemplo de uso: Assistente “JoãoGPT” 🤠
+Imagine um app que você abre e pergunta:
+“João, qual o resumo das reuniões de hoje?”
+→ O SLM busca nas suas anotações e te dá um resumo rápido.
+
+*** Resposta:
+
+* Espaço para Códigos e Respostas
+** Código 1
+#+begin_src python
+# Seu código aqui
+# Exemplo:
+# print("Hello, Org Babel!")
+#+end_src
+
+#+RESULTS:
+
+** Resposta 1
+
+** Código 2
+#+begin_src python
+# Seu código aqui
+# Exemplo:
+# a = 10
+# b = 20
+# print(a + b)
+#+end_src
+
+#+RESULTS:
+
+** Resposta 2
+
+
+
+
+** DONE Fontes
+*** Resposta:
+Sintetizado da literatura recente e práticas de engenharia de modelos.
+

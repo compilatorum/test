@@ -1,0 +1,140 @@
+* [[docs/tutorials/a-codex-unparser.org][a-codex-unparser.org]] - Tutorial on unparsing code with Codex.
+* [[docs/tutorials/a-collation-step-function-for-temperature-to-improve-codex-results.org][a-collation-step-function-for-temperature-to-improve-codex-results.org]] - Discusses improving Codex results using a collation step function for temperature.
+* [[docs/tutorials/a-conversable-subject-matter-expert-for-whatever-you-re-looking-at.org][a-conversable-subject-matter-expert-for-whatever-you-re-looking-at.org]] - Tutorial on creating a conversational AI expert.
+* [[docs/tutorials/a-git-commit-message-generator-with-codex.org][a-git-commit-message-generator-with-codex.org]] - How to generate Git commit messages using Codex.
+* [[docs/tutorials/a-more-reliable-grammar-corrector-with-gpt-3-and-pen-el.org][a-more-reliable-grammar-corrector-with-gpt-3-and-pen-el.org]] - Using GPT-3 and pen-el for better grammar correction.
+* [[docs/tutorials/a-prompt-to-christen-name-things.org][a-prompt-to-christen-name-things.org]] - A prompt for generating names for things.
+* [[docs/tutorials/a-prompting-lsp-server-for-any-language-or-context-using-large-language-models.org][a-prompting-lsp-server-for-any-language-or-context-using-large-language-models.org]] - Creating an LSP server with LLMs for prompting in any language.
+* [[docs/tutorials/a-suite-of-default-functions-for-pen-el.org][a-suite-of-default-functions-for-pen-el.org]] - Overview of default functions available in pen-el.
+* [[docs/tutorials/a-syntax-corrector-with-codex.org][a-syntax-corrector-with-codex.org]] - Using Codex for syntax correction.
+* [[docs/tutorials/ai21-aix-openai-and-huggingface-with-pen-el.org][ai21-aix-openai-and-huggingface-with-pen-el.org]] - Integrating AI21, AIX, OpenAI, and Huggingface with pen-el.
+* [[docs/tutorials/alephalpha-for-alttext.org][alephalpha-for-alttext.org]] - Using Aleph Alpha for generating alt text.
+* [[docs/tutorials/an-emacs-imaginary-interpreter-with-history-completion-and-evaluation.org][an-emacs-imaginary-interpreter-with-history-completion-and-evaluation.org]] - Creating an Emacs imaginary interpreter with history, completion, and evaluation.
+* [[docs/tutorials/an-exposition-of-pen-el-s-imaginary-interpreter.org][an-exposition-of-pen-el-s-imaginary-interpreter.org]] - Explaining the imaginary interpreter in pen-el.
+* [[docs/tutorials/an-imaginary-linter-with-codex.org][an-imaginary-linter-with-codex.org]] - Creating an imaginary linter using Codex.
+* [[docs/tutorials/an-lsp-server-for-codex.org][an-lsp-server-for-codex.org]] - Setting up an LSP server specifically for Codex.
+* [[docs/tutorials/an-operating-system-based-on-gpt-3.org][an-operating-system-based-on-gpt-3.org]] - Conceptualizing an OS based on GPT-3.
+* [[docs/tutorials/apostrophe.org][apostrophe.org]] - Tutorial related to apostrophe functionality.
+* [[docs/tutorials/arbitrary-keyword-extraction-with-gpt-3-pen-el-and-emacs.org][arbitrary-keyword-extraction-with-gpt-3-pen-el-and-emacs.org]] - Extracting keywords using GPT-3, pen-el, and Emacs.
+* [[docs/tutorials/autocompleting-anything-with-gpt-3-in-emacs.org][autocompleting-anything-with-gpt-3-in-emacs.org]] - Using GPT-3 for general autocompletion in Emacs.
+* [[docs/tutorials/autofix-code-with-codex.org][autofix-code-with-codex.org]] - How to automatically fix code using Codex.
+* [[docs/tutorials/babel-and-pen-generating-snippets.org][babel-and-pen-generating-snippets.org]] - Generating code snippets using Babel and pen.
+* [[docs/tutorials/caching-and-saving-results-of-prompt-functions-in-pen-el.org][caching-and-saving-results-of-prompt-functions-in-pen-el.org]] - Managing results of prompt functions in pen-el.
+* [[docs/tutorials/channel.org][channel.org]] - Tutorial related to channel functionality.
+* [[docs/tutorials/charming-conversation-with-multiversal-search.org][charming-conversation-with-multiversal-search.org]] - Engaging in conversational search across multiple sources.
+* [[docs/tutorials/codex-and-pen-el-for-writing-haskell.org][codex-and-pen-el-for-writing-haskell.org]] - Using Codex and pen-el to assist with Haskell programming.
+* [[docs/tutorials/combining-humans-with-ais-to-prompt-lms-with-pen-el.org][combining-humans-with-ais-to-prompt-lms-with-pen-el.org]] - Exploring hybrid human-AI prompting strategies for LLMs with pen-el.
+* [[docs/tutorials/comparing-imaginary-prolog-interpreters.org][comparing-imaginary-prolog-interpreters.org]] - Comparison of different imaginary Prolog interpreters.
+* [[docs/tutorials/complex-haskell-interpreter.org][complex-haskell-interpreter.org]] - Working with a complex Haskell interpreter.
+* [[docs/tutorials/compliment-generation.org][compliment-generation.org]] - Generating compliments using the tools.
+* [[docs/tutorials/consistency-in-imaginary-programming-functions.org][consistency-in-imaginary-programming-functions.org]] - Maintaining consistency when working with imaginary programming functions.
+* [[docs/tutorials/constraint-variables-for-imaginary-programming.org][constraint-variables-for-imaginary-programming.org]] - Utilizing constraint variables in imaginary programming.
+* [[docs/tutorials/copilot-like-fish-like-autosuggestion-for-pen-el.org][copilot-like-fish-like-autosuggestion-for-pen-el.org]] - Implementing Copilot/Fish-like autosuggestion in pen-el.
+* [[docs/tutorials/create-external-prompt-commands-with-pen-el-interactively.org][create-external-prompt-commands-with-pen-el-interactively.org]] - Creating external prompt commands interactively with pen-el.
+* [[docs/tutorials/creating-a-playground-for-gpt-3-in-emacs.org][creating-a-playground-for-gpt-3-in-emacs.org]] - Setting up an Emacs environment for experimenting with GPT-3.
+* [[docs/tutorials/creating-some-imagery-for-pen-el-with-clip.org][creating-some-imagery-for-pen-el-with-clip.org]] - Generating imagery for pen-el using CLIP.
+* [[docs/tutorials/cterm.org][cterm.org]] - Tutorial related to cterm (complex terminal) functionality.
+* [[docs/tutorials/davinci-instruct-beta-in-emacs-and-pen-el.org][davinci-instruct-beta-in-emacs-and-pen-el.org]] - Using the Davinci Instruct Beta model within Emacs and pen-el.
+* [[docs/tutorials/define-made-up-words-with-davinci.org][define-made-up-words-with-davinci.org]] - Generating definitions for invented words using Davinci.
+* [[docs/tutorials/demo-of-explain-a-file-4-prompt-explain-any-file.org][demo-of-explain-a-file-4-prompt-explain-any-file.org]] - Demonstration of a prompt for explaining file contents.
+* [[docs/tutorials/demo-of-gpt-j-with-pen-el.org][demo-of-gpt-j-with-pen-el.org]] - Demonstration of using GPT-J with pen-el.
+* [[docs/tutorials/demo-of-imaginary-interpreters-with-pen-el.org][demo-of-imaginary-interpreters-with-pen-el.org]] - Demonstration of imaginary interpreters within pen-el.
+* [[docs/tutorials/demo-of-lookingglass-v1-0i.org][demo-of-lookingglass-v1-0i.org]] - Demonstration of the Looking Glass tool.
+* [[docs/tutorials/demonstrating-an-lsp-mode-based-on-codex-with-org-mode-and-with-code.org][demonstrating-an-lsp-mode-based-on-codex-with-org-mode-and-with-code.org]] - Demonstrating an LSP mode powered by Codex in Org mode and with code examples.
+* [[docs/tutorials/describing-melee-s-paintings-with-alephalpha.org][describing-melee-s-paintings-with-alephalpha.org]] - Generating descriptions of paintings using Aleph Alpha.
+* [[docs/tutorials/designing-an-imaginary-programming-ip-library-for-emacs.org][designing-an-imaginary-programming-ip-library-for-emacs.org]] - Designing a library for imaginary programming within Emacs.
+* [[docs/tutorials/discourse-analysis-with-codex.org][discourse-analysis-with-codex.org]] - Performing discourse analysis with the help of Codex.
+* [[docs/tutorials/documentation-for-anything-anywhere-with-codex.org][documentation-for-anything-anywhere-with-codex.org]] - Generating documentation for various things using Codex.
+* [[docs/tutorials/enshrining-semiotic-artwork-surreal-infts-with-alethea-ai.org][enshrining-semiotic-artwork-surreal-infts-with-alethea-ai.org]] - Creating semiotic artwork and surreal NFTs with Alethea AI.
+* [[docs/tutorials/esp.org][esp.org]] - Tutorial related to ESP functionality.
+* [[docs/tutorials/examplary.org][examplary.org]] - Tutorial related to Examplary functionality.
+* [[docs/tutorials/explain-a-file-s-contents-with-codex.org][explain-a-file-s-contents-with-codex.org]] - Using Codex to explain the content of a file.
+* [[docs/tutorials/explain-solidity-code.org][explain-solidity-code.org]] - Explaining Solidity code with the tools.
+* [[docs/tutorials/explain-the-grammar-of-prolog-or-any-bnf.org][explain-the-grammar-of-prolog-or-any-bnf.org]] - Explaining the grammar of Prolog or other BNFs.
+* [[docs/tutorials/explaining-code-with-pen-el.org][explaining-code-with-pen-el.org]] - Using pen-el to get explanations for code.
+* [[docs/tutorials/explainshell-with-gpt-3.org][explainshell-with-gpt-3.org]] - Getting explanations for shell commands using GPT-3.
+* [[docs/tutorials/fictional-statements-of-remorse-with-gpt-3.org][fictional-statements-of-remorse-with-gpt-3.org]] - Generating fictional statements of remorse using GPT-3.
+* [[docs/tutorials/generate-new-files-with-codex-and-pen-el.org][generate-new-files-with-codex-and-pen-el.org]] - Creating new files using Codex and pen-el.
+* [[docs/tutorials/generate-sourcegraph-queries-with-pen-el.org][generate-sourcegraph-queries-with-pen-el.org]] - Generating Sourcegraph queries using pen-el.
+* [[docs/tutorials/generate-transformative-code-with-codex.org][generate-transformative-code-with-codex.org]] - Using Codex to generate code that transforms other code.
+* [[docs/tutorials/generate-yasnippet-templates-with-codex.org][generate-yasnippet-templates-with-codex.org]] - Generating Yasnippet templates using Codex.
+* [[docs/tutorials/generating-perl-one-liners-using-gpt-3-and-pen-el.org][generating-perl-one-liners-using-gpt-3-and-pen-el.org]] - Creating Perl one-liners with GPT-3 and pen-el.
+* [[docs/tutorials/generating-pickup-lines-with-gpt-3.org][generating-pickup-lines-with-gpt-3.org]] - Generating pickup lines using GPT-3.
+* [[docs/tutorials/gpt-3-assistants-for-emacs-modes.org][gpt-3-assistants-for-emacs-modes.org]] - Creating GPT-3 powered assistants for different Emacs modes.
+* [[docs/tutorials/gpt-3-for-building-mind-maps-with-an-ai-tutor-for-any-topic.org][gpt-3-for-building-mind-maps-with-an-ai-tutor-for-any-topic.org]] - Using GPT-3 to build mind maps with an AI tutor.
+* [[docs/tutorials/gui-spacemacs-support-for-dockerized-pen-el.org][gui-spacemacs-support-for-dockerized-pen-el.org]] - Setting up GUI support for a Dockerized pen-el environment in Spacemacs.
+* [[docs/tutorials/gui-support-for-pen-el-docker.org][gui-support-for-pen-el-docker.org]] - Setting up GUI support for a Dockerized pen-el environment.
+* [[docs/tutorials/having-fun-with-pen-el.org][having-fun-with-pen-el.org]] - Exploring enjoyable ways to use pen-el.
+* [[docs/tutorials/hiding-personal-information-with-openai-codex.org][hiding-personal-information-with-openai-codex.org]] - Using OpenAI Codex to help anonymize personal information.
+* [[docs/tutorials/how-to-use-pen-el-to-autocomplete-your-code.org][how-to-use-pen-el-to-autocomplete-your-code.org]] - Guide on using pen-el for code autocompletion.
+* [[docs/tutorials/how-to-use-with-codex.org][how-to-use-with-codex.org]] - General instructions on using the tools with Codex.
+* [[docs/tutorials/huggingface-with-pen-el-select-the-right-transformer.org][huggingface-with-pen-el-select-the-right-transformer.org]] - Selecting the appropriate Huggingface transformer model with pen-el.
+* [[docs/tutorials/human-engine-for-training-pen-el.org][human-engine-for-training-pen-el.org]] - Using a human "engine" for training pen-el.
+* [[docs/tutorials/ilambda-bash-interop.org][ilambda-bash-interop.org]] - Interoperability between ilambda and Bash.
+* [[docs/tutorials/ilambda-repl-for-pen-el.org][ilambda-repl-for-pen-el.org]] - Setting up an ilambda REPL within pen-el.
+* [[docs/tutorials/ilambda-tutorial.org][ilambda-tutorial.org]] - Tutorial on using ilambda.
+* [[docs/tutorials/ilm-the-imacro-lambda-generate-code-and-run-in-one-command.org][ilm-the-imacro-lambda-generate-code-and-run-in-one-command.org]] - Using imacro lambda (ilm) for generating and running code in one step.
+* [[docs/tutorials/imaginary-agi-library-with-pen-el.org][imaginary-agi-library-with-pen-el.org]] - Developing an imaginary AGI library using pen-el.
+* [[docs/tutorials/imaginary-chimera-languages-with-codex.org][imaginary-chimera-languages-with-codex.org]] - Creating imaginary "chimera" languages with Codex.
+* [[docs/tutorials/imaginary-computing.org][imaginary-computing.org]] - Exploring the concept of imaginary computing.
+* [[docs/tutorials/imaginary-interpreter-from-complex-term.org][imaginary-interpreter-from-complex-term.org]] - Creating an imaginary interpreter from a complex term.
+* [[docs/tutorials/imaginary-prolog-interpreter-with-codex.org][imaginary-prolog-interpreter-with-codex.org]] - Building an imaginary Prolog interpreter using Codex.
+* [[docs/tutorials/imaginary-real-codex-complex.org][imaginary-real-codex-complex.org]] - Exploring the relationship between imaginary, real, Codex, and complexity.
+* [[docs/tutorials/imagine-a-project-with-codex.org][imagine-a-project-with-codex.org]] - Imagining and conceptualizing a project with the help of Codex.
+* [[docs/tutorials/imagine-and-reify-a-project-template.org][imagine-and-reify-a-project-template.org]] - Imagining and realizing a project template.
+* [[docs/tutorials/improved-imaginary-interpreter-for-bash.org][improved-imaginary-interpreter-for-bash.org]] - Enhancements to the imaginary interpreter for Bash.
+* [[docs/tutorials/improved-templating-for-prompt-description-files-in-pen-el.org][improved-templating-for-prompt-description-files-in-pen-el.org]] - Better templating for prompt description files in pen-el.
+* [[docs/tutorials/ink.org][ink.org]] - Tutorial related to Ink functionality.
+* [[docs/tutorials/irssi-and-complex-term-for-amazing-autocomplete-in-irc.org][irssi-and-complex-term-for-amazing-autocomplete-in-irc.org]] - Using Irssi and complex term for enhanced autocompletion in IRC.
+* [[docs/tutorials/language-agnostic-code-generator-in-pen-el.org][language-agnostic-code-generator-in-pen-el.org]] - Creating a code generator in pen-el that works across different languages.
+* [[docs/tutorials/minority-report.org][minority-report.org]] - Tutorial related to the Minority Report concept.
+* [[docs/tutorials/more-interactive-imaginary-infocom-games.org][more-interactive-imaginary-infocom-games.org]] - Making imaginary Infocom games more interactive.
+* [[docs/tutorials/multi-part-prompts.org][multi-part-prompts.org]] - Working with prompts that have multiple parts.
+* [[docs/tutorials/multiple-pen-el-daemons-for-asynchronous-llm-prompting-from-an-lsp-server.org][multiple-pen-el-daemons-for-asynchronous-llm-prompting-from-an-lsp-server.org]] - Using multiple pen-el daemons for asynchronous LLM prompting from an LSP server.
+* [[docs/tutorials/nlsh-natural-language-shell.org][nlsh-natural-language-shell.org]] - Introducing the Natural Language Shell (nlsh).
+* [[docs/tutorials/nlsh.org][nlsh.org]] - Tutorial on using nlsh.
+* [[docs/tutorials/on-this-day-the-company-semiotic-was-started.org][on-this-day-the-company-semiotic-was-started.org]] - A historical note on the founding of Semiotic.
+* [[docs/tutorials/paracosm.org][paracosm.org]] - Tutorial related to the concept of a paracosm.
+* [[docs/tutorials/parallelization-for-pen-el-exuberant-completions.org][parallelization-for-pen-el-exuberant-completions.org]] - Using parallelization for faster completions in pen-el.
+* [[docs/tutorials/parsers-and-actions-for-prompt-files-in-pen-el.org][parsers-and-actions-for-prompt-files-in-pen-el.org]] - Defining parsers and actions for prompt files in pen-el.
+* [[docs/tutorials/pen-el-demo-integrating-language-models-with-programming-imaginary-programming-chatbots-and-mindmapping.org][pen-el-demo-integrating-language-models-with-programming-imaginary-programming-chatbots-and-mindmapping.org]] - Demonstration of integrating LMs with various functionalities in pen-el.
+* [[docs/tutorials/pen-el-for-privacy.org][pen-el-for-privacy.org]] - Using pen-el with privacy considerations.
+* [[docs/tutorials/pen-el-for-social-rescue.org][pen-el-for-social-rescue.org]] - Exploring the use of pen-el for social assistance.
+* [[docs/tutorials/pen-el-has-a-demo-menu-for-learning-its-usage.org][pen-el-has-a-demo-menu-for-learning-its-usage.org]] - How to use the demo menu in pen-el for learning.
+* [[docs/tutorials/pen-el-host-interop-and-client-server.org][pen-el-host-interop-and-client-server.org]] - Interoperability between the pen-el host and client-server setup.
+* [[docs/tutorials/pen-el-installation-from-scratch.org][pen-el-installation-from-scratch.org]] - Guide for installing pen-el from scratch.
+* [[docs/tutorials/pen-el-the-first-ide-for-eleutherai-and-openai.org][pen-el-the-first-ide-for-eleutherai-and-openai.org]] - Highlighting pen-el as an IDE for EleutherAI and OpenAI.
+* [[docs/tutorials/pen-el-tutorial.org][pen-el-tutorial.org]] - General tutorial for pen-el.
+* [[docs/tutorials/pen-el-v2-0.org][pen-el-v2-0.org]] - Information about version 2.0 of pen-el.
+* [[docs/tutorials/pen-emacs-and-fantasia.org][pen-emacs-and-fantasia.org]] - Integrating pen-emacs with Fantasia.
+* [[docs/tutorials/pen-human-the-macro-to-run-code-with-a-human-prompter.org][pen-human-the-macro-to-run-code-with-a-human-prompter.org]] - Using the `pen-human` macro for human-assisted code execution.
+* [[docs/tutorials/pen-s-nlsh-for-codex.org][pen-s-nlsh-for-codex.org]] - Using pen's nlsh with Codex.
+* [[docs/tutorials/pen-tutorial.org][pen-tutorial.org]] - Another general tutorial for pen.
+* [[docs/tutorials/pen-vim-a-prompting-libary-for-vim-based-on-pen-el.org][pen-vim-a-prompting-libary-for-vim-based-on-pen-el.org]] - A prompting library for Vim based on pen-el.
+* [[docs/tutorials/pen.org][pen.org]] - General information or tutorial about the pen project.
+* [[docs/tutorials/pensieve.org][pensieve.org]] - Tutorial related to the Pensieve tool.
+* [[docs/tutorials/pet-vim-pen-el-has-pets.org][pet-vim-pen-el-has-pets.org]] - Exploring "pets" functionality in pen-el related to Vim.
+* [[docs/tutorials/play-hitchhiker-s-guide-to-the-galaxy-with-codex.org][play-hitchhiker-s-guide-to-the-galaxy-with-codex.org]] - Playing a text adventure game with Codex.
+* [[docs/tutorials/porting-the-glossary-system-to-pen-el.org][porting-the-glossary-system-to-pen-el.org]] - How to port the glossary system to pen-el.
+* [[docs/tutorials/prompt-design-with-yasnippet.org][prompt-design-with-yasnippet.org]] - Designing prompts using Yasnippet.
+* [[docs/tutorials/prompts-to-search-for-functions-in-pen-el.org][prompts-to-search-for-functions-in-pen-el.org]] - Prompts designed for searching for functions within pen-el.
+* [[docs/tutorials/representing-multiverses-with-datomic.org][representing-multiverses-with-datomic.org]] - Using Datomic to represent the concept of multiverses.
+* [[docs/tutorials/search-the-web-with-codex.org][search-the-web-with-codex.org]] - Using Codex for web search.
+* [[docs/tutorials/select-function-with-signature-help-from-nl-using-codex.org][select-function-with-signature-help-from-nl-using-codex.org]] - Selecting functions based on natural language descriptions and getting signature help with Codex.
+* [[docs/tutorials/simply-complete-selection.org][simply-complete-selection.org]] - Basic selection completion functionality.
+* [[docs/tutorials/sport-related-pickup-lines-in-pen-el.org][sport-related-pickup-lines-in-pen-el.org]] - Generating sport-themed pickup lines in pen-el.
+* [[docs/tutorials/tcl-expect-for-pen-el-automating-complex-terminals.org][tcl-expect-for-pen-el-automating-complex-terminals.org]] - Automating complex terminals using Tcl Expect with pen-el.
+* [[docs/tutorials/thin-client-for-pen-el-just-load-pen-client-el.org][thin-client-for-pen-el-just-load-pen-client-el.org]] - Using pen-el as a thin client by loading only `pen-client.el`.
+* [[docs/tutorials/tmux-for-pen-el.org][tmux-for-pen-el.org]] - Integrating tmux with pen-el.
+* [[docs/tutorials/transforming-prose-and-code-in-a-generic-way.org][transforming-prose-and-code-in a-generic-way.org]] - Generic methods for transforming both prose and code.
+* [[docs/tutorials/translate-the-code-you-re-reading-into-your-fav-language.org][translate-the-code-you-re-reading-into-your-fav-language.org]] - Translating code into a preferred programming language.
+* [[docs/tutorials/translating-prompts-i-e-nlp-tasks-with-gpt-3-and-pen-el.org][translating-prompts-i-e-nlp-tasks-with-gpt-3-and-pen-el.org]] - Translating natural language prompts (NLP tasks) using GPT-3 and pen-el.
+* [[docs/tutorials/tree-sitter.org][tree-sitter.org]] - Tutorial related to Tree-sitter integration.
+* [[docs/tutorials/trying-bigscience-t0pp-with-pen-el.org][trying-bigscience-t0pp-with-pen-el.org]] - Experimenting with the BigScience T0++ model using pen-el.
+* [[docs/tutorials/trying-out-the-grand-mac-but-talking-to-imaginary-ronald-mcdonald.org][trying-out-the-grand-mac-but-talking-to-imaginary-ronald-mcdonald.org]] - A playful tutorial involving an imaginary conversation.
+* [[docs/tutorials/universal-syntax-highlighting-for-pen-el-nlsh-and-imaginary-interpreter.org][universal-syntax-highlighting-for-pen-el-nlsh-and-imaginary-interpreter.org]] - Implementing consistent syntax highlighting across pen-el, nlsh, and the imaginary interpreter.
+* [[docs/tutorials/using-emacs-prompt-functions-inside-other-prompt-functions.org][using-emacs-prompt-functions-inside-other-prompt-functions.org]] - Nesting Emacs prompt functions within each other.
+* [[docs/tutorials/using-pen-el-on-the-cli-to-generate-code-snippets.org][using-pen-el-on-the-cli-to-generate-code-snippets.org]] - Generating code snippets using pen-el from the command line.
+* [[docs/tutorials/using-yo-dawg-i-heard-with-prompt-functions-in-pen-el.org][using-yo-dawg-i-heard-with-prompt-functions-in-pen-el.org]] - Using a specific prompt structure ("Yo dawg, I heard...") with prompt functions in pen-el.
+
+*Note:* This map is a starting point generated based on the filenames in the `tutorials` folder. A more accurate and detailed map would require analyzing the code and content of each tutorial file, similar to the analysis done for the Emacs Lisp code in [[penscrap/mapa-elisp.md]] and [[mapa.md]].

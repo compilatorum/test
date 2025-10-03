@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pipeline Nexialista: Emacs + RAG + Data Lake</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      font-family: sans-serif;
+    }
+    #cy {
+      width: 100%; height: 100%;
+      display: block;
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <div id="cy"></div>
+
+  <!-- Cytoscape.js from unpkg -->
+  <script src="https://unpkg.com/cytoscape@3.22.1/dist/cytoscape.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const cy = cytoscape({
+        container: document.getElementById('cy'),
+        style: [
+          { selector: 'node', style: {
+              'label': 'data(label)',
+              'text-valign': 'center',
+              'text-halign': 'center',
+              'background-color': '#4c8bf5',
+              'color': '#fff', 'text-wrap': 'wrap',
+              'font-size': 10, 'width': 'label', 'height': 'label',
+              'padding': '10px', 'shape': 'roundrectangle'
+            }
+          },
+          { selector: 'node[group="EmacsUI"]', style: {
+              'background-color': '#f58b4c'
+            }
+          },
+          { selector: 'node[group="DataLake"]', style: {
+              'background-color': '#4cf5a8'
+            }
+          },
+          { selector: 'node[group="Cloud"]', style: {
+              'background-color': '#a84cf5'
+            }
+          },
+          { selector: 'node[group="RAG"]', style: {
+              'background-color': '#f5e74c',
+              'color': '#333'
+            }
+          },
+          { selector: 'edge', style: {
+              'width': 2,
+              'line-color': '#ccc',
+              'target-arrow-color': '#ccc',
+              'target-arrow-shape': 'triangle',
+              'curve-style': 'bezier'
+            }
+          }
+        ],
+        elements: {
+          nodes: [
+            // UI
+            { data: { id: 'VK', label: '⌨️ VK-Space', group: 'EmacsUI' }},
+            { data: { id: 'Notifications', label: '🔔 Emacs Notifications', group: 'EmacsUI' }},
+
+            // Emacs ingestion
+            { data: { id: 'simple-httpd', label: '🌐 simple-httpd', group: 'EmacsUI' }},
+            { data: { id: 'org-protocol', label: '📡 org-protocol', group: 'EmacsUI' }},
+            { data: { id: 'elfeed', label: '📥 elfeed', group: 'EmacsUI' }},
+
+            // Emacs packages
+            { data: { id: 'lsp', label: '🤖 lsp-mode/eglot' }},
+            { data: { id: 'treesitter', label: '🌲 tree-sitter-langs' }},
+            { data: { id: 'semantic', label: '🧠 semantic-mode' }},
+            { data: { id: 'org-element', label: '📦 org-element' }},
+            { data: { id: 'xref', label: '🔍 xref/consult/embark' }},
+            { data: { id: 'hydra', label: '🕹️ hydra' }},
+            { data: { id: 'vterm', label: '🖥️ vterm/eshell' }},
+            { data: { id: 'compile', label: '⚙️ compile/popwin' }},
+            { data: { id: 'magit', label: '🌿 magit/delta/diff-hl' }},
+            { data: { id: 'codegpt', label: '🤖 codegpt' }},
+            { data: { id: 'gptel', label: '🧠 gptel' }},
+            { data: { id: 'ra-aid', label: '🧩 ra-aid.el' }},
+            { data: { id: 'org-capture', label: '✍️ org-capture/roam/brain' }},
+            { data: { id: 'org-super-agenda', label: '📅 org-super-agenda' }},
+            { data: { id: 'writeroom', label: '✍️ writeroom/olivetti' }},
+            { data: { id: 'denote', label: '🏷️ denote' }},
+            { data: { id: 'projectile', label: '🏹 projectile' }},
+            { data: { id: 'which-key', label: '🗝️ which-key' }},
+            { data: { id: 'company', label: '🤖 company' }},
+            { data: { id: 'avy', label: '🚀 avy' }},
+            { data: { id: 'treemacs', label: '🌳 treemacs' }},
+            { data: { id: 'use-package', label: '📦 use-package' }},
+
+            // Cloud & Data Lake
+            { data: { id: 'Playwright', label: '🤖 Playwright/Crawl4AI', group: 'Cloud' }},
+            { data: { id: 'raw_events', label: '📂 raw_events', group: 'DataLake' }},
+            { data: { id: 'html_pages', label: '📄 html_pages', group: 'DataLake' }},
+            { data: { id: 'chunks', label: '🔖 chunks', group: 'DataLake' }},
+            { data: { id: 'embeddings', label: '📊 embeddings', group: 'DataLake' }},
+            { data: { id: 'users', label: '👥 users', group: 'DataLake' }},
+            { data: { id: 'sem_graph', label: '🌐 sem_graph', group: 'DataLake' }},
+            { data: { id: 'time_series', label: '⏱️ time_series', group: 'DataLake' }},
+            { data: { id: 'fine_tune', label: '📈 fine_tune', group: 'DataLake' }},
+
+            // RAG
+            { data: { id: 'chunking', label: '🪶 Chunking', group: 'RAG' }},
+            { data: { id: 'embedding_api', label: '📡 Embedding API', group: 'RAG' }},
+            { data: { id: 'rag_api', label: '🔎 RAG Retrieval', group: 'RAG' }},
+            { data: { id: 'rag_query_fn', label: '🔗 vk/rag-query', group: 'RAG' }}
+          ],
+          edges: [
+            // Ingestion flows
+            { data: { source: 'Notifications', target: 'elfeed' }},
+            { data: { source: 'simple-httpd', target: 'raw_events' }},
+            { data: { source: 'org-protocol', target: 'raw_events' }},
+            { data: { source: 'Playwright', target: 'html_pages' }},
+
+            // Data Lake processing
+            { data: { source: 'raw_events', target: 'chunking' }},
+            { data: { source: 'html_pages', target: 'chunking' }},
+            { data: { source: 'chunking', target: 'chunks' }},
+            { data: { source: 'chunks', target: 'embedding_api' }},
+            { data: { source: 'embedding_api', target: 'embeddings' }},
+
+            // RAG retrieval
+            { data: { source: 'embeddings', target: 'rag_api' }},
+            { data: { source: 'rag_api', target: 'rag_query_fn' }},
+            { data: { source: 'rag_query_fn', target: 'VK' }},
+
+            // Emacs package support
+            { data: { source: 'lsp', target: 'VK' }},
+            { data: { source: 'treesitter', target: 'VK' }},
+            { data: { source: 'semantic', target: 'VK' }},
+            { data: { source: 'org-element', target: 'VK' }},
+            { data: { source: 'xref', target: 'VK' }},
+            { data: { source: 'hydra', target: 'VK' }},
+            { data: { source: 'vterm', target: 'VK' }},
+            { data: { source: 'compile', target: 'VK' }},
+            { data: { source: 'magit', target: 'VK' }},
+            { data: { source: 'codegpt', target: 'VK' }},
+            { data: { source: 'gptel', target: 'VK' }},
+            { data: { source: 'ra-aid', target: 'VK' }},
+            { data: { source: 'org-capture', target: 'VK' }},
+            { data: { source: 'org-super-agenda', target: 'VK' }},
+            { data: { source: 'writeroom', target: 'VK' }},
+            { data: { source: 'denote', target: 'VK' }},
+            { data: { source: 'projectile', target: 'VK' }},
+            { data: { source: 'which-key', target: 'VK' }},
+            { data: { source: 'company', target: 'VK' }},
+            { data: { source: 'avy', target: 'VK' }},
+            { data: { source: 'treemacs', target: 'VK' }},
+            { data: { source: 'use-package', target: 'VK' }}
+          ]
+        },
+        layout: { name: 'cose', padding: 10 }
+      });
+    });
+  </script>
+</body>
+</html>
+```[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/dontcallmedom/webidlpedia/tree/ca80487557793c5fccc08fe62dc27e03079f9c64/cyto.js?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/ga52can/microlyze/tree/195d729af4dcf4e17ee247cae6d3acd3965122f8/architecture-discovery-frontend%2Fsrc%2Fapp%2Fmodules%2Fdashboard%2Fdashboard.component.ts?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")

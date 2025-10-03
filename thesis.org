@@ -1,0 +1,597 @@
+Imaginary programming is a new programming paradigm based on language models
+Abstract
+Imaginary code is code who’s behaviour is influenced by LMs. The side effects or return values of imaginary code, therefore, are imagined by a LM, but may also be used to facilitate the imagination of the programmer and may be considered to be a bicycle for the imagination. This is very obvious when interacting with an imaginary REPL. I will attempt to formalise imaginary programming, make some demonstrations of programming within this paradigm and explore some useful data structures and algorithms that are both impurely and purely imaginary. I’ll also give an example of an imaginary programming language that I have created (perhaps the first of its kind), examplary. The motivation for formalising imaginary programming is not purely academic. Imaginary code needs to be recognised as code so that it may be protected by GPL. I also posit that models of NL, if trained on source code, create a holographic representation of the software, which I argue is a derivative work and a reflection of the original code. I argue that a holographic representation of software both within (author inspiration) and without (how it is used) is just another representation of the software, alongside the original source code, just as functions may be represented differently (by formula or sets; For example: domain and range).
+
+Introduction
+The recently burgeoning and soon to diminish programming paradigm of prompt engineering is about to be superseded by prompt-tuning and the fine-tuning of LMs which will further occlude the way that software works. Prompt engineering has barely had it’s time in the spotlight and as a result has not established itself as a sovereign programming paradigm.
+
+However, imaginary programming is a broader definition that encapsulates all programming that solicits LMs and uses their output to effect change in a program’s logic and will outlast prompt engineering as a useful concept.
+
+In contrast with imaginary code, ordinary code has not yet been contaminated by a LM, and we say that it has no imaginary dimension to it.
+
+Impure imaginary code is where ordinary code intersects with pure imaginary code. An impure imaginary function is a function that queries a LM to directly affect its own logic or output. We say that an impure imaginary function is grounded [to reality] because it’s connecting base reality to a LM.
+
+The output and behaviour of an impure imaginary function is directly influenced by base reality plus a query to a LM.
+
+The query [or prompt] to the LM may be in part constructed manually through prompt engineering, or in part constructed automatically via prompt tuning, or in part constructed or eliminated by the fine-tuning of a LM. Even after fine-tuning, there is still a query to be formulated to the LM, and that query may indeed be the empty string.
+
+Considering that large LMs such as GPT-3 can perform multiple tasks, the process of refining a query through prompt-engineering, prompt-tuning or fine-tuning also characterises the expected output from the LM. All that is left is to map a prompt along with its associated LM to a function and then you have a prompt function.
+
+Prompt functions reconcile LMs with programming languages. A prompt function is just a function that prompts a LM and may optionally be parameterized with template variables that are substituted into the prompt or also contain hyperparameters to affect the LM’s operation.
+
+Such functions are the basis for services such as GitHub Copilot.
+
+Impure imaginary code is useful
+Impure imaginary code is very obviously useful as such code utilises LMs that are trained to perform useful tasks. GPT-3, for example, is a generalist and only requires a tiny amount of prompt design and/or fine-tuning to direct it to perform the task you want.
+
+Following are some demonstrations of using impure imaginary code to construct part of an imaginary programming environment, perform code generation, transpile code and translate world languages.
+
+Useful impure imaginary functions
+With one Pen.el system
+The following prompt function definition function associates a prompt with a LM (OpenAI’s GPT-3 davinci) and defines the parameters for a function in emacs lisp.
+
+title: bash one liner generator on OS from natural language
+doc: Get a bash one liner on OS from natural language
+notes:
+- "rlprompt is used here outside of pen.el"
+rlprompt: nlsh <1>
+prompt: |
+    # List of one-liner shell commands for <1>.
+    # Language: Shell
+    # Operating System: <1>
+
+    Input: Print the current directory
+    Output: pwd
+    ###
+    Input: List files
+    Output: ls -l
+    ###
+    Input: Change directory to /tmp
+    Output: cd /tmp
+    ###
+    repeater: |
+    Input: {}
+    Output:
+lm-command: "openai-complete.sh"
+engine: davinci
+temperature: 0.8
+max-tokens: 60
+top-p: 1
+stop-sequences:
+- "###"
+vars:
+- Operating System
+- command
+examples:
+- Arch Linux
+- Install package
+postprocessor: 'sed ''s/^Output: //'''
+conversation-mode: true
+The following is the generated documentation for the interactive prompt function in emacs.
+
+pf-bash-one-liner-generator-from-natural-language is an interactive
+function defined in pen-example-config.el.
+
+Signature
+(pf-bash-one-liner-generator-from-natural-language &optional TASK-DESCRIPTION &key NO-SELECT-RESULT)
+
+Documentation
+bash one liner generator from natural language
+Get a bash one liner from natural language
+
+path:
+- /home/shane/source/git/spacemacs/prompts/prompts/bash-one-liner.prompt
+
+examples:
+- shift last argument
+
+Key Bindings
+This command is not in any keymaps.
+
+References
+pf-bash-one-liner-generator-from-natural-language is unused in pen-example-config.el.
+Below is the generated interactive function in emacs lisp.
+
+(lambda
+  (&optional task-description &rest --cl-rest--)
+  "bash one liner generator from natural language\nGet a bash one liner from natural language\n\npath:\n- /home/shane/source/git/spacemacs/prompts/prompts/bash-one-liner.prompt\n\nexamples:\n- shift last argument\n\n(fn &optional TASK-DESCRIPTION &key NO-SELECT-RESULT)"
+  (interactive
+   (list
+    (if mark-active
+        (pen-selected-text)
+      (if nil
+          (etv "shift last argument")
+        (read-string-hist "task-description: " "shift last argument")))))
+  (let*
+      ((no-select-result
+        (car
+         (cdr
+          (plist-member --cl-rest-- ':no-select-result)))))
+    (progn
+      (let
+          ((--cl-keys-- --cl-rest--))
+        (while --cl-keys--
+          (cond
+           ((memq
+             (car --cl-keys--)
+             '(:no-select-result :allow-other-keys))
+            (setq --cl-keys--
+                  (cdr
+                   (cdr --cl-keys--))))
+           ((car
+             (cdr
+              (memq ':allow-other-keys --cl-rest--)))
+            (setq --cl-keys-- nil))
+           (t
+            (error "Keyword argument %s not one of (:no-select-result)"
+                   (car --cl-keys--))))))
+      (cl-block pf-bash-one-liner-generator-from-natural-language
+        (let*
+            ((final-prompt "The following is a list of one-liners for the linux command-line:\n\n# get newest file in directory bash\n$ ls -t * | head -1\n###\n# Find with invert match - e.g. find every file that is not mp3\n$ find . -name '*' -type f -not -path '*.mp3'\n###\n# Recursively remove all \"node_modules\" folders\n$ find . -name \"node_modules\" -exec rm -rf '{}' +\n###\n# <1>\n$\n")
+             (final-max-tokens
+              (str
+               (if
+                   (variable-p 'max-tokens)
+                   (eval 'max-tokens)
+                 60)))
+             (final-stop-sequences
+              (if
+                  (variable-p 'stop-sequences)
+                  (eval 'stop-sequences)
+                '("###")))
+             (vals
+              (mapcar 'str
+                      (if
+                          (not
+                           (interactive-p))
+                          (progn
+                            (cl-loop for sym in
+                                     '(task-description)
+                                     for iarg in
+                                     '((if mark-active
+                                           (pen-selected-text)
+                                         (if nil
+                                             (etv "shift last argument")
+                                           (read-string-hist "task-description: " "shift last argument"))))
+                                     collect
+                                     (let*
+                                         ((initval
+                                           (eval sym)))
+                                       (if
+                                           (and
+                                            (not initval)
+                                            iarg)
+                                           (eval iarg)
+                                         initval))))
+                        (cl-loop for v in
+                                 '(task-description)
+                                 until
+                                 (eq v '&key)
+                                 collect
+                                 (eval v)))))
+             (vals
+              (cl-loop for tp in
+                       (-zip-fill nil vals 'nil)
+                       collect
+                       (let*
+                           ((v
+                             (car tp))
+                            (pp
+                             (cdr tp)))
+                         (if pp
+                             (pen-sn pp v)
+                           v))))
+             (i 1)
+             (final-prompt
+              (pen-expand-template final-prompt vals))
+             (prompt-end-pos
+              (or
+               (byte-string-search "<:pp>" "The following is a list of one-liners for the linux command-line:\n\n# get newest file in directory bash\n$ ls -t * | head -1\n###\n# Find with invert match - e.g. find every file that is not mp3\n$ find . -name '*' -type f -not -path '*.mp3'\n###\n# Recursively remove all \"node_modules\" folders\n$ find . -name \"node_modules\" -exec rm -rf '{}' +\n###\n# <1>\n$\n")
+               (string-bytes final-prompt)))
+             (final-prompt
+              (string-replace "<:pp>" "" final-prompt))
+             (final-prompt
+              (if nil
+                  (sor
+                   (pen-snc nil final-prompt)
+                   (concat "prompt-filter " nil " failed."))
+                final-prompt))
+             (pen-sh-update
+              (or pen-sh-update
+                  (>=
+                   (prefix-numeric-value current-global-prefix-arg)
+                   4)))
+             (shcmd
+              (pen-log
+               (concat
+                (sh-construct-envs
+                 `(("PEN_PROMPT" ,(pen-encode-string final-prompt))
+                   ("PEN_LM_COMMAND" ,"openai-complete.sh")
+                   ("PEN_ENGINE" ,"davinci")
+                   ("PEN_MAX_TOKENS" ,(pen-expand-template final-max-tokens vals))
+                   ("PEN_TEMPERATURE" ,(pen-expand-template
+                                        (str 0.8)
+                                        vals))
+                   ("PEN_STOP_SEQUENCE" ,(pen-encode-string
+                                          (str
+                                           (if
+                                               (variable-p 'stop-sequence)
+                                               (eval 'stop-sequence)
+                                             "###"))))
+                   ("PEN_TOP_P" ,1)
+                   ("PEN_CACHE" ,nil)
+                   ("PEN_N_COMPLETIONS" ,5)
+                   ("PEN_END_POS" ,prompt-end-pos)))
+                " " "upd lm-complete")))
+             (resultsdirs
+              (cl-loop for i in
+                       (number-sequence 1 1)
+                       collect
+                       (progn
+                         (message
+                          (concat "pf-bash-one-liner-generator-from-natural-language" " query "
+                                  (int-to-string i)
+                                  "..."))
+                         (let
+                             ((ret
+                               (pen-prompt-snc shcmd i)))
+                           (message
+                            (concat "pf-bash-one-liner-generator-from-natural-language" " done "
+                                    (int-to-string i)))
+                           ret))))
+             (results
+              (-uniq
+               (flatten-once
+                (cl-loop for rd in resultsdirs collect
+                         (if
+                             (sor rd)
+                             (->>
+                                 (glob
+                                  (concat rd "/*"))
+                               (mapcar 'e/cat)
+                               (mapcar
+                                (lambda
+                                  (r)
+                                  (if
+                                      (and nil
+                                           (sor nil))
+                                      (pen-sn nil r)
+                                    r)))
+                               (mapcar
+                                (lambda
+                                  (r)
+                                  (if
+                                      (and
+                                       (variable-p 'prettify)
+                                       prettify nil
+                                       (sor nil))
+                                      (pen-sn nil r)
+                                    r)))
+                               (mapcar
+                                (lambda
+                                  (r)
+                                  (if
+                                      (not nil)
+                                      (s-trim-left r)
+                                    r)))
+                               (mapcar
+                                (lambda
+                                  (r)
+                                  (if
+                                      (not nil)
+                                      (s-trim-right r)
+                                    r)))
+                               (mapcar
+                                (lambda
+                                  (r)
+                                  (cl-loop for stsq in final-stop-sequences do
+                                           (let
+                                               ((matchpos
+                                                 (string-search stsq r)))
+                                             (if matchpos
+                                                 (setq r
+                                                       (s-truncate matchpos r "")))))
+                                  r)))
+                           (list
+                            (message "Try UPDATE=y or debugging")))))))
+             (result
+              (if no-select-result
+                  (length results)
+                (cl-fz results :prompt
+                       (concat "pf-bash-one-liner-generator-from-natural-language" ": ")
+                       :select-only-match t))))
+          (if no-select-result results
+            (if
+                (interactive-p)
+                (cond
+                 ((>=
+                   (prefix-numeric-value current-prefix-arg)
+                   4)
+                  (etv result))
+                 ((and nil mark-active)
+                  (replace-region result))
+                 ((or nil nil)
+                  (insert result))
+                 (t
+                  (etv result)))
+              result)))))))
+The above function creates a NL shell. This enables you to generate shell commands based on NL and it is parameterized to enable you to specify the operating system that the commands generated should run on.
+
+(list2str (pf-bash-one-liner-generator-on-os-from-natural-language "Arch Linux" "Disable firewall" :no-select-result t))
+Here is a list of suggestions generated from the above prompt function.
+
+iptables -F
+iptables -P OUTPUT DROP
+sed -i 's/^[ \t]*firewall=.*$/firewall=0/' /etc/sysconfig/iptables
+systemctl stop iptables.service
+sudo systemctl stop iptables
+sudo ufw disable
+You may also run it as a REPL.
+
+https://semiosis.github.io/posts/imaginary-programming-with-gpt-3/
+
+title: Code interpreter kickstarter
+future-titles:
+- Code interpreter kickstarter
+doc: Given a line of code, infer the result of running that code
+prompt-version: 4
+prompt: |
+  Code examples:
+
+  Language: Python
+  Input: print(random.randint(0,9))
+  Output: 5
+  ###
+  Language: Bash
+  Input: Str="Learn Linux from LinuxHint"; subStr=${Str:6:5}
+  Output: Linux
+  ###
+repeater: |
+  Language: <1>
+  Input: {}
+  Output:
+issues: 
+engine: davinci
+temperature: 0.8
+max-tokens: 60
+top-p: 1
+stop-sequences:
+- "##"
+- "\n"
+vars:
+- language
+- code
+examples:
+- haskell
+- '"Hello" ++ " " ++ "World"'
+prefer-external: true
+external: iol
+similarity-test: string-equal
+quality-script: levenshtein -s
+conversation-mode: true
+n-test-runs: 5
+(car (pf-code-interpreter-kickstarter "Haskell" "\"Hello\" ++ \" \" ++ \"World\"" :no-select-result t))
+Hello World
+With two Pen.el systems
+Using a common language model
+Translating communications with a world language translation prompt function.
+
+title: Translate from world language X to Y
+prompt-version: 3
+doc: This prompt translates English text to any world langauge
+prompt: |
+  ###
+  # English: Hello
+  # Russian: Zdravstvuyte
+  # Italian: Salve
+  # Japanese: Konnichiwa
+  # German: Guten Tag
+  # French: Bonjour
+  # Spanish: Hola
+  ###
+  # English: Happy birthday!
+  # French: Bon anniversaire !
+  # German: Alles Gute zum Geburtstag!
+  # Italian: Buon compleanno!
+  # Indonesian: Selamat ulang tahun!
+  ###
+  # <1>: <3>
+  # <2>:
+engine: davinci
+temperature: 0.5
+max-tokens: 200
+top-p: 1
+stop-sequences:
+- "#"
+vars:
+- from-language
+- to-language
+- phrase
+preprocessors:
+- cat
+- cat
+- pen-s onelineify
+postprocessor: pen-s unonelineify
+examples:
+- English
+- French
+- Goodnight
+var-defaults:
+- "(or (sor (nth 0 (pf-get-language (pen-selected-text) :no-select-result t))) (read-string-hist \"Pen From language: \"))"
+- "(read-string-hist \"Pen To language: \")"
+- "(pen-selected-text)"
+filter: on
+A demonstration of two people who understand different world languages using a common LM to understand one another.
+
+Happy birthday
+To you
+;; Alice translates into french for Bob
+(car (pf-translate-from-world-language-x-to-y "English" "French" "Happy birthday\nTo you" :no-select-result t))
+Bon anniversaire
+A vous
+Merci
+beaucoup
+;; Bob translates back into English for Alice
+(car (pf-translate-from-world-language-x-to-y "French" "English" "Merci\nbeaucoup" :no-select-result t))
+Thank you!
+https://asciinema.org/a/7YnSnrrLgbiFlyMyYxBgaZYUb
+
+With different language models
+GPT-neo and GPT-3?
+curie vs davinci?
+Generate a story about a meeting with one prompt
+Summarize with bullet points
+meeting-bullets-to-summary.prompt
+An impure imaginary data structure
+With one Pen.el system
+Natural language database entry
+With two Pen.el systems
+Database prompt
+With three Pen.el systems
+Database prompt
+Find a useful impure imaginary algorithm
+With one Pen.el system
+Translate from X to Y
+Backtranslate from Y to X
+Find a better prompt?
+
+With two Pen.el systems
+With three Pen.el systems
+Pure imaginary code is useful
+Pure imaginary programming is a type of programming where the original language models may not even be known.
+
+I demonstate that collaborative pure imaginary programming is useful.
+
+Translation between two Pen.el systems with different language models
+A common library of pure imaginary functions.
+
+("translate" "prose" "from" "to")
+Pure imaginary functions can be composed.
+
+("translate" ("make analogy about" "topic") "from" "to")
+Imaginary programming languages are required to work with language models
+Examplary
+Part of it is task-oriented, which defers imagination to a language model to understand what it means.
+Part of it is example-oriented, which is pure-imaginary.
+Example-oriented
+;; Convert lines to regex.
+(xl-defprompt ("lines of code" regex)
+               ;; :task "Convert lines to regex"
+               ;; Generate input with this
+               ;; :gen "examplary-edit-generator shane"
+               :gen examplary-edit-generator
+               :filter "grex"
+               ;; The third argument (if supplied) should be incorrect output (a counterexample).
+               ;; If the 2nd argument is left out, it will be generated by the command specified by :external
+               :examples (("example 1\nexample2")
+                          ("example 2\nexample3" "^example [23]$")
+                          ("pi4\npi5" "^pi[45]$" "pi4\npi5"))
+               :lm-command "openai-complete.sh")
+Task oriented
+("translate" ("make analogy about" "topic") "from" "to")
+Projecting the code back to the starting LM is possible
+Semantic search on existing documents
+Semantic search on existing functions in emacs
+Language models encode holographic representations of software
+It’s important to avoid mixing training data of varying licenses when training LMs.
+
+One risk is that in the future, as holographic representations of software are used more in place of running original source code (i.e. as LMs are used more to simulate software), a software’s hologram is more likely to be used in ways that violate the original license or the spirit of the license.
+
+LMs bring with them understanding of the way software is used, and also an understanding of the inspiration that went into designing that software. The issue is that this is all automated and right now new software companies are staking their future on LMs and using said models to their fullest.
+
+Therefore, the inexorable conclusion is that software that has been used to train these models will be used holographically, perhaps more than even from their original software and their holographic representation that encodes the value of the software (the way it’s used as opposed to written) is what’s more important and that’s is what is being exploited.
+
+If the original code of an example of free software was part of the training data of a NN alongside software of other conflicting licenses then that effectively relicences the same software without consent, going forward into the future.
+
+https://en.wikipedia.org/wiki/Holography
+excerpt
+A hologram represents a recording of information regarding the light that came from the original scene as scattered in a range of directions rather than from only one direction, as in a photograph. This allows the scene to be viewed from a range of different angles, as if it were still present.
+excerpt
+When the hologram is illuminated by the original reference beam, each of the individual zone plates reconstructs the object wave that produced it, and these individual wavefronts are combined to reconstruct the whole of the object beam. The viewer perceives a wavefront that is identical with the wavefront scattered from the object onto the recording medium, so that it appears that the object is still in place even if it has been removed.
+Generating parts of emacs with GPT-3
+I am able to generate parts of GPL protected software using LMs and can query the LMs as to how they are used.
+
+Therefore, the software exists now in the latent space of a language model in the form of a hologram, within and without the source code. Language models encode contrived associations made between different pieces of software in order to create an accurate model that is useful for simulation, code generation, code understanding and modelling the usage of software.
+
+The holographic representation
+0.9 / 1 is still stealing
+Counter arguments
+It’s not imaginary, it’s just… English? more like, stochastic programming?
+Imaginary programming is more of an activity and a style of programming and is not really concerned with the amount of uncertainty.
+
+Your code might take a trip through someone else’s LM along the way and be projected back to your own.
+
+That means that some of the logic is completely obscured and you have to make assumptions.
+
+You may collaborate on a user interface or program with others and since that code can’t be fully understood by one person because of the veil then you are compelled to imagine in order to create something useful.
+
+A person must build their own interface from the pure imaginary functions that are shared.
+
+It’s a paradigm completely made up so it’s useful as far as it’s useful.
+
+All this is based on this idea that we will have many finetuned and completely different transformer models and we must learn to communicate.
+
+The NeverEnding story also influenced my thoughts.
+
+Once everyone stops believing in Fantasia it ceases to exist, as does the utility of applications built in pure imaginary code.
+
+I don’t think anyone working in this field actually believes GPT is “intelligent”. It’s more like a calculator for words.
+GPT is a multidimensional representation of language and its internal associations and the extrapolation/continuation of language. Language permeates society and software. It makes for a big step forward in the domains of NLP and software engineering and traversing this multidimensional space is as easy as writing code pre-GPT. So downplaying how transformative GPT is a bit naive. While being hung up on whether or not GPT is ‘intelligent’, it’s automating whatever constitutes imaginary intelligence, since it can literally generate multiverses forwards and backwards from a starting point in language. So while being hung up on the definition you just might find yourself sideswiped by an AI that does your imagination for you. If that’s not intelligent, than what is?
+
+Further counter argument:
+I work with GPT-3 every day. It’s a great tool, but it needs a lot of hand-holding. This won’t change with GPT-4 because the reason it needs hand-holding is because it lacks actual intelligence.
+
+It’s a predictive model, which means it’s only as good as its operator.
+
+Rebuttal
+That’s again naive because the operator can be many people in collaboration. Languages and tools that query GPT will make it easier to control.
+
+it wasn’t the Linux Foundation that built GPT-3
+I like Codex and OpenAI and what they’re doing, and I hope they remain in the lead and succeed, but I want them to support the people who they are building their company off of.
+
+Not just build on top of their hard work and not give back.
+
+GitHub didn’t even consider making different copilot models for different licenses.
+
+that shows they may hold a lot of code but licenses to them mean nothing.
+
+It’s not even an afterthought to them.
+
+The worst part, if they fine-tune the model against free/libre software and other licenses, to prevent generating exact code snippets, then that is actually worse!
+
+It’s worse because in actuality, the weights which were trained on that software are still being used.
+
+Except it’s being masked on the final layers of the NN and that’s actually censorship.
+
+From a moral standpoint it’s deeply rotten.
+
+the argument for why copilot/codex is theft is based on the fact that it encodes a holographic representation of the software (inspiration;fictional and actual) and usage of the software, not that it merely generates exact code snippets (which it can).
+
+and to finetune against generating exact code snippets obscures the actual point (that the deeper weights are encoding the inspiration for and usage of the software).
+
+and that’s where the value of the original software is going into the future.
+
+that’s where relicencing comes into it.
+
+because future software engineering is based on NLU and NLG, the holographic representation is the more useful representation and that’s what’s being stolen.
+
+the future of the libre software is being stolen, not the past.
+
+They may own the architecture but they are holding the weights hostage. The architecture and hardware is the work of openai and they deserve credit for that and should be able to use them for research purposes, but the weights do not belong to them for commercial purposes
+
+Key points
+The holographic representation of software is a more holistic and useful representation and is where the value is going into the future
+References
+https://thegradient.pub/machine-translation-shifts-power/
+calibre:Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing
+Prolog terminology
+ewwlinks +/"^A term is called ground if it contains no variables" "https://www.metalevel.at/prolog/data#term"
+A compound term is called partially instantiated if one of its subterms is a variable.
+
+Material
+https://www.theinsaneapp.com/2021/09/github-copilot-generated-40-percent-insecure-code.html
+But this problem is solved using GitHub’s CodeQL for searching and filtering generated code. By combining Copilot with GitHub Semantic and GitHub CodeQL, you have a means of writing and generating the code you want in a secure way. This means that you no longer need the original source code that was used to train Codex. Training Codex and selling as a product in the form of Copilot steals the essence of the original source code used to train it, to build the future of programming, while paying nothing back to the original authors. Even Elon Musk was opposed to OpenAI exclusively licensing to Microsoft GPT.
+
+https://edition.cnn.com/2020/09/27/tech/elon-musk-tesla-bill-gates-microsoft-open-ai/index.html
+
+It’s so transformative that people may allow it to circumvent licenses.
